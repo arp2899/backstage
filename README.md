@@ -12,6 +12,7 @@ To run the app
 `4. python manage.py runserver` <br>
 `5. python manage.py test #run the test cases ` <br>
 
+Once the Django backend is working, goto frontend to run frontend as a separate process
 
 Apis
 1. For pythagorean triplets

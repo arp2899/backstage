@@ -47,7 +47,8 @@ def pythagorean_triplets(request):
         return ResService.error_response('Required Parameters are a, b, c')
 
     try:
-        sorted_numbers: List = sorted([a, b, c])
+        MathService.pythagorean_triplet(a, b, c)
+        sorted_numbers: List = sorted([int(a), int(b), int(c)])
         val: bool
         sols: List[PythagoreanTripletSolution] = PythagoreanTripletSolution.objects.filter(number_a=sorted_numbers[0],
                                                                                            number_b=sorted_numbers[1],
