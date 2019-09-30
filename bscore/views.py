@@ -10,13 +10,16 @@ from bscore.service.res_service import ResService
 
 
 def difference(request) -> JsonResponse:
-    n: str = request.GET.get('number', None)
+    n: str = request.GET.get('number', '').strip()
     x: int = 0
     if n:
-        x = int(n)
+        try:
+            x = int(n)
+        except Exception as e:
+            return JsonResponse(ResService.error_response('Number %s does not seems to be a valid integer' % n))
     if x <= 0 or x > 100 or int(n) != float(n):
         return JsonResponse(ResService.error_response('Required Query Param number should be an Valid Integer between '
-                                                      '1 to 100'))
+                                                      '1 to 100'), status=400)
     else:
         sols: List[Solution] = Solution.objects.filter(problem=x, problem_type=ProblemTypeEnum.DIFFERENCE)
         val: int
@@ -32,4 +35,4 @@ def difference(request) -> JsonResponse:
         sol.refresh_from_db()
 
     return JsonResponse(
-        ResService.success_response({"value": val, "occurrence": sol.occurrence, "number": sol.problem, "datetime": sol.updated.isoformat()}))
+        ResService.success_response({"value": val, "occurrence": sol.occurrence, "number": int(sol.problem), "datetime": sol.updated.isoformat()}))
