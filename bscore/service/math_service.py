@@ -1,4 +1,4 @@
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Tuple
 
 
 class MathService(object):
@@ -11,7 +11,7 @@ class MathService(object):
         return sum_square - square_sum
 
     @staticmethod
-    def is_pythagorean_triplet(a: Union[int, str], b: Union[int, str], c: Union[int, str]) -> bool:
+    def pythagorean_triplet(a: Union[int, str], b: Union[int, str], c: Union[int, str]) -> Tuple[int, bool]:
         numbers: List[int] = [a, b, c]
         sorted_numbers: List[int] = []
         for num in numbers:
@@ -25,7 +25,7 @@ class MathService(object):
         sorted_numbers.sort()
 
         if sorted_numbers[0]**2 + sorted_numbers[1]**2 == sorted_numbers[2]**2:
-            return True
+            return sorted_numbers[0] * sorted_numbers[1] * sorted_numbers[2], True
         else:
-            return False
+            return sorted_numbers[0] * sorted_numbers[1] * sorted_numbers[2], False
 
