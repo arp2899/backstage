@@ -3,4 +3,4 @@ django-cors-headers==3.1.0
 gevent==1.4.0
 greenlet==0.4.15
 pytz==2019.2
-sqlparse==0.3.0
+sqlparse==0.4.4
